@@ -74,7 +74,9 @@
 
 //This will basically flip the item from one NSMutableArray to the other (and animate that change appropriately)
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{   
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
     CGPoint toPoint = [self.tableView.superview convertPoint:segmentedControl.center fromView:self.view];
     
     if (segmentedControl.selectedSegmentIndex == kSelectedSegmentedIndexRight){

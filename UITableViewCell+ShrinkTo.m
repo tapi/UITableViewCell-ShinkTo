@@ -63,13 +63,14 @@
     
     CABasicAnimation *opacityAnim = [CABasicAnimation animationWithKeyPath:@"alpha"];
     opacityAnim.fromValue = [NSNumber numberWithFloat:1.0];
-    opacityAnim.toValue = [NSNumber numberWithFloat:0.1];
+    opacityAnim.toValue = [NSNumber numberWithFloat:0.05];
     opacityAnim.removedOnCompletion = NO;
     
     UIBezierPath *movePath = [UIBezierPath bezierPath];
-    CGPoint ctlPoint = CGPointMake(self.center.x, thePoint.y);
+	CGPoint ctlPoint1 = CGPointMake(self.center.x, (self.center.y + ((thePoint.y - self.center.y)/2)));
+	CGPoint ctlPoint2 = CGPointMake((self.center.x + ((thePoint.x - self.center.x) /2)), self.center.y);
     [movePath moveToPoint:self.center];
-    [movePath addQuadCurveToPoint:thePoint controlPoint:ctlPoint];
+	[movePath addCurveToPoint:thePoint controlPoint1:ctlPoint1 controlPoint2:ctlPoint2];
     
     CAKeyframeAnimation *moveAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     moveAnim.path = movePath.CGPath;
